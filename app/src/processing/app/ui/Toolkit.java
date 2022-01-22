@@ -1202,6 +1202,7 @@ public class Toolkit {
    * the Preferences window, and can be used by HTMLEditorKit for WebFrame).
    */
   static private Font createFont(String filename, int size) throws IOException, FontFormatException {
+    long t1 = System.currentTimeMillis();
     File fontFile = Platform.getContentFile("lib/fonts/" + filename);
 
     if (fontFile == null || !fontFile.exists()) {
@@ -1217,16 +1218,20 @@ public class Toolkit {
       }
       Messages.showError("Font Sadness", msg, null);
     }
+    long t2 = System.currentTimeMillis();
 
     BufferedInputStream input = new BufferedInputStream(new FileInputStream(fontFile));
     Font font = Font.createFont(Font.TRUETYPE_FONT, input);
     input.close();
+    long t3 = System.currentTimeMillis();
 
     new Thread(() -> {
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
       ge.registerFont(font);
     }, "FontRegisterer").start();
 
+    long t4 = System.currentTimeMillis();
+    System.out.println("Font: " + (t2-t1) + " " + (t3-t2 + " " + (t4-t3)));
     return font.deriveFont((float) size);
   }
 

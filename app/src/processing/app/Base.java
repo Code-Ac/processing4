@@ -364,10 +364,14 @@ public class Base {
 
     long t2 = System.currentTimeMillis();
     buildCoreModes();
+    long t21 = System.currentTimeMillis();
     rebuildContribModes();
+    long t22 = System.currentTimeMillis();
     rebuildContribExamples();
 
     long t3 = System.currentTimeMillis();
+
+    System.out.println("Builds: " + (t21 - t2) + " " + (t22 - t21) + " " + (t3 - t22));
     // Needs to happen after the sketchbook folder has been located.
     // Also relies on the modes to be loaded so it knows what can be
     // marked as an example.
@@ -450,8 +454,11 @@ public class Base {
     ContributionListing cl = ContributionListing.getInstance();
     cl.downloadAvailableList(this, new ContribProgressMonitor() { });
     long t9 = System.currentTimeMillis();
-//    System.out.println("base took " + (t2-t1) + " " + (t3-t2) + " " + (t4-t3) +
-//      " " + (t5-t4) + " t6-t5=" + (t6-t5) + " " + (t7-t6) + " handleNew=" + (t8-t7) + " " + (t9-t8) + " ms");
+    System.out.println("ContribInit:" + (t2-t1) + "\nContribBuild:" + (t3-t2) +
+                         "\nRecent:" + (t4-t3) + "\nSetMode:" + (t5-t4) +
+                         "\nLib&Platform:" + (t6-t5) + "\nArgParsing:" + (t7-t6) +
+                         "\nNewWindow=" + (t8-t7) + "\nUpdateCheck:" + (t9-t8) +
+                         "\nAll:" + (t9-t1));
   }
 
 

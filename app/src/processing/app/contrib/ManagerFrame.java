@@ -65,6 +65,7 @@ public class ManagerFrame {
 
     final int smallSize = Toolkit.zoom(12);
     final int normalSize = Toolkit.zoom(14);
+    long t0 = System.currentTimeMillis();
     SMALL_PLAIN = Toolkit.getSansFont(smallSize, Font.PLAIN);
     SMALL_BOLD = Toolkit.getSansFont(smallSize, Font.BOLD);
     NORMAL_PLAIN = Toolkit.getSansFont(normalSize, Font.PLAIN);
@@ -74,19 +75,19 @@ public class ManagerFrame {
     //      and Swing is a piece of s*t, so it's gonna be slow with lots of contribs.
     //      In particular, load everything and then fire the update events.
     //      Also, don't pull all the colors over and over again.
-//    long t1 = System.currentTimeMillis();
+    long t1 = System.currentTimeMillis();
     librariesTab = new ContributionTab(this, ContributionType.LIBRARY);
-//    long t2 = System.currentTimeMillis();
+    long t2 = System.currentTimeMillis();
     modesTab = new ContributionTab(this, ContributionType.MODE);
-//    long t3 = System.currentTimeMillis();
+    long t3 = System.currentTimeMillis();
     toolsTab = new ContributionTab(this, ContributionType.TOOL);
-//    long t4 = System.currentTimeMillis();
+    long t4 = System.currentTimeMillis();
     examplesTab = new ContributionTab(this, ContributionType.EXAMPLES);
-//    long t5 = System.currentTimeMillis();
+    long t5 = System.currentTimeMillis();
     updatesTab = new UpdateContributionTab(this);
-//    long t6 = System.currentTimeMillis();
+    long t6 = System.currentTimeMillis();
 
-//    System.out.println("ManagerFrame.<init> " + (t2-t1) + " " + (t3-t2) + " " + (t4-t3) + " " + (t5-t4) + " " + (t6-t5));
+    System.out.println("ManagerFrame:\n  Font:" + (t1-t0) + "\n  Lib:" + (t2-t1) + "\n  Mode:" + (t3-t2) + "\n  Tool:" + (t4-t3) + "\n  Example:" + (t5-t4) + "\n  Update:" + (t6-t5));
   }
 
 

@@ -680,14 +680,14 @@ public class ContributionManager {
 
 
   static public void init(Base base) throws Exception {
-//    long t1 = System.currentTimeMillis();
+    long t1 = System.currentTimeMillis();
     listing = ContributionListing.getInstance(); // Moved here to make sure it runs on EDT [jv 170121]
-//    long t2 = System.currentTimeMillis();
+    long t2 = System.currentTimeMillis();
     managerDialog = new ManagerFrame(base);
-//    long t3 = System.currentTimeMillis();
+    long t3 = System.currentTimeMillis();
     cleanup(base);
-//    long t4 = System.currentTimeMillis();
-//    System.out.println("ContributionManager.init() " + (t2-t1) + " " + (t3-t2) + " " + (t4-t3));
+    long t4 = System.currentTimeMillis();
+    System.out.println("ContribInit:\n  Instance:" + (t2-t1) + " ManagerFrame:" + (t3-t2) + " Cleanup:" + (t4-t3));
   }
 
 
